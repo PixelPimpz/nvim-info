@@ -5,7 +5,7 @@ main() {
   local PANE_PID="$(tmux display -p "#{pane_pid}")"
   tmux display -p "SOCKS: ${SOCKS}"
 
-  local SOCKET=$(ls "${SOCKS}" | grep "${PANE_PID}"
+  local SOCKET="$(ls "${SOCKS}" | grep "${PANE_PID}")"
   tmux display -p "PANE_PID: ${PANE_PID}"
   #tmux display -p "SOCKET: ${SOCKET}"
 }
