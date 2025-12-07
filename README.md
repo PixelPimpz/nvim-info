@@ -1,4 +1,4 @@
-# "get\_cur\_buffer"
+/ "get\_cur\_buffer"
 
 A sort of simple plugin for tmux that uses nvim remote to fetch useful metadata for use in tmux 
 UI elements. 
