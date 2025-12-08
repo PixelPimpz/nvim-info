@@ -11,7 +11,7 @@ main() {
 }
 
 debug() {
-  echo "$0 - $? - $@"
+  printf '$?: %s\n$#: %s\n $0:%s \n$@ %s\n' "$?" "$#" "$0" "$@"
   tmux display -p "SOCKET: ${SOCKET}"
 }
 
