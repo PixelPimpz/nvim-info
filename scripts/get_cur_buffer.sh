@@ -5,8 +5,10 @@ main() {
   local SOCKS="/run/user/1000"
   local PANE_PID="$(tmux display -p "#{pane_pid}")"
   local SOCKET="$(ls "${SOCKS}" | grep "${PANE_PID}")"
-  local BUF_NAME="$( nvim --server "${SOCKET}" --remote-expr 'bufname("%:t")' )"
-  if (( $DEBUG == 1 )); then debug fi
+  ##local BUF_NAME="$( nvim --server "${SOCKET}" --remote-expr 'bufname("%:t")' )"
+  if (( $DEBUG == 1 )); then 
+    debug 
+  fi
 }
 
 debug() {
