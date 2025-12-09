@@ -9,7 +9,9 @@ main() {
   local PROC="$(ps -h --ppid "${PANE_PID}" -o cmd | awk '{print $1}')"  
   if [[ "${PROC}" == "nvim" ]]; then
     local ICON="$("${YQ_BIN}" '.icons.nvim' "${ICONS}")"
-    [[ ! command -v "${YQ_BIN}" &> /dev/null ]] && fatal "yq failed"
+    if ! command -v "${YQ_BIN}" &> /dev/null; then
+      fatal "yq failed"
+    fi
     
     local SOCKET="/tmp/$(ls /tmp | grep -E "${PANE_PID}")"
     local BUF_NAME="$( nvim --server ${SOCKET} --remote-expr 'expand("%:t")' )"
