@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 DEBUG=$1
-ICONS="../lib/app-icons.yml"
+ICONS="./lib/app-icons.yml"
 
 main() {
   local PANE_PID="$(tmux display -p "#{pane_pid}")"
