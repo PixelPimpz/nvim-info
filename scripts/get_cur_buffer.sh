@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 CURRENT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-PLUG_ROOT="$CURRENT_DIR/../.."
+PLUG_ROOT="${CURRENT_DIR%/*}"
 ICONS="${CURRENT_DIR}/../lib/app-icons.yml"
 YQ_BIN='/usr/bin/yq'
 
