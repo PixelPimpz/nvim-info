@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 CURRENT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 PLUG_ROOT="${CURRENT_DIR%/*}"
-ICONS="${PLUG_ROOT}/lib/app-icons.yml"
+ICONS="${PLUG_ROOT}/lib/app-icons.yaml"
 YQ_BIN='/usr/bin/yq'
 
 DEBUG=$1
