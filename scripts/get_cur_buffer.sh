@@ -6,7 +6,7 @@ main() {
   local SOCKET="/tmp/$(ls /tmp | grep -E "${PANE_PID}")"
   #local PROC="$(ps -h --ppid ${PANE_PID} -o cmd | awk '{print $1}')"
   #echo "$(ps -h --ppid "${PANE_PID}" -o cmd | awk '{print $1}')"
-  echo "$(ps -h --ppid "${PANE_PID}" -o cmd )"
+  #echo "$(ps -h --ppid "${PANE_PID}" -o cmd )"
   local BUF_NAME="$( nvim --server ${SOCKET} --remote-expr 'expand("%:t")' )"
   if (( $DEBUG == 1 )); then 
     debug "SOCKET: ${SOCKET}"
