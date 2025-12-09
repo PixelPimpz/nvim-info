@@ -4,7 +4,7 @@ DEBUG=$1
 main() {
   local PANE_PID="$(tmux display -p "#{pane_pid}")"
   local SOCKET="/tmp/$(ls /tmp | grep -E "${PANE_PID}")"
-  local PROC="$(ps --ppid ${PANE_PID} | awk '{print $1}')"
+  local PROC="$(ps -h --ppid ${PANE_PID} -o cmd | awk '{print $1}')"
   local BUF_NAME="$( nvim --server ${SOCKET} --remote-expr 'expand("%:t")' )"
   if (( $DEBUG == 1 )); then 
     debug "SOCKET: ${SOCKET}"
