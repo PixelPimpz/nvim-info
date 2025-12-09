@@ -6,7 +6,7 @@ main() {
   local PANE_PID="$(tmux display -p "#{pane_pid}")"
   local PROC="$(ps -h --ppid "${PANE_PID}" -o cmd | awk '{print $1}')"  
   if [[ "${PROC}" == "nvim" ]]; then
-    local ICON=$(yq 'icons.nvim' ${ICONS} )
+    local ICON=$(yq '.icons.nvim' ${ICONS} )
     local SOCKET="/tmp/$(ls /tmp | grep -E "${PANE_PID}")"
     local BUF_NAME="$( nvim --server ${SOCKET} --remote-expr 'expand("%:t")' )"
     
