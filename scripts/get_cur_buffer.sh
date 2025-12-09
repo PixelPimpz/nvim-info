@@ -5,10 +5,9 @@ ICONS="../lib/app-icons.yml"
 main() {
   local PANE_PID="$(tmux display -p "#{pane_pid}")"
   local PROC="$(ps -h --ppid "${PANE_PID}" -o cmd | awk '{print $1}')"  
-
   if [[ "${PROC}" == "nvim" ]]; then
     #local ICON="$( cat "${ICONS}" | grep "${PROC}" )"
-    local ICON="$( cat ../lib/app-icons.yml | grep  "nvim" )"
+    local ICON=">> $( cat ../lib/app-icons.yml | head -1 )"
     local SOCKET="/tmp/$(ls /tmp | grep -E "${PANE_PID}")"
     local BUF_NAME="$( nvim --server ${SOCKET} --remote-expr 'expand("%:t")' )"
     
