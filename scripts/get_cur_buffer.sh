@@ -5,13 +5,13 @@ ICONS="${CURRENT_DIR}../lib/app-icons.yml"
 YQ_BIN='/usr/bin/yq'
 
 main() {
+  if ! command -v "${YQ_BIN}" &> /dev/null; then
+    fatal "yq executable not found at ${YQ_BIN}."
+  fi
   local PANE_PID="$(tmux display -p "#{pane_pid}")"
   local PROC="$(ps -h --ppid "${PANE_PID}" -o cmd | awk '{print $1}')"  
   if [[ "${PROC}" == "nvim" ]]; then
     local ICON="$("${YQ_BIN}" '.icons.nvim' "${ICONS}")"
-    if ! command -v "${YQ_BIN}" &> /dev/null; then
-      fatal "yq failed"
-    fi
     
     local SOCKET="/tmp/$(ls /tmp | grep -E "${PANE_PID}")"
     local BUF_NAME="$( nvim --server ${SOCKET} --remote-expr 'expand("%:t")' )"
