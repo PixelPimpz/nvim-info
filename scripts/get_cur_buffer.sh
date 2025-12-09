@@ -5,8 +5,6 @@ main() {
   local PANE_PID="$(tmux display -p "#{pane_pid}")"
   local SOCKET="/tmp/$(ls /tmp | grep -E "${PANE_PID}")"
   local BUF_NAME="$( nvim --server ${SOCKET} --remote-expr 'expand("%:t")' )"
-  local PROC_NAME="$(ps -o command ${PANE_PID})"
-  local BUF_NAME="$( nvim --server ${SOCKET} --remote-expr 'bufname("%:t")' )"
   if (( $DEBUG == 1 )); then 
     debug "SOCKET: ${SOCKET}"
     [[ -n "${BUF_NAME}" ]] && debug "BUF_NAME: ${BUF_NAME}" || fatal "bufname not found."  
