@@ -1,24 +1,31 @@
 #!/usr/bin/env bash
-DEBUG=$1
 CURRENT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 ICONS="${CURRENT_DIR}/../lib/app-icons.yml"
 YQ_BIN='/usr/bin/yq'
+
+DEBUG=$1
 
 main() {
   if ! command -v "${YQ_BIN}" &> /dev/null; then
     fatal "yq executable not found at ${YQ_BIN}."
   fi
+  
   local PANE_PID="$(tmux display -p "#{pane_pid}")"
-  local PROC="$(ps -h --ppid "${PANE_PID}" -o cmd | awk '{print $1}')"  
+  local PROC="$(ps -h --ppid "${PANE_PID}" -o cmd | head -n 1 | awk '{print $1}')"  
+
   if [[ "${PROC}" == "nvim" ]]; then
+
     local ICON="$("${YQ_BIN}" '.icons.nvim' "${ICONS}")"
-    
+    local YQ_EXIT=$?
+    (( $YQ_EXIT != 0 )) && fatal "yq failed with code $YQ_EXIT. Check yaml for path & syntax."
+
     local SOCKET="/tmp/$(ls /tmp | grep -E "${PANE_PID}")"
     local BUF_NAME="$( nvim --server ${SOCKET} --remote-expr 'expand("%:t")' )"
     
     if (( $DEBUG == 1 )); then 
       debug "SOCKET: ${SOCKET}"
       debug "PROC: ${PROC}"
+      debug "ICONS: ${ICONS}"
       debug "ICON: ${ICON}"
       [[ -n "${BUF_NAME}" ]] && debug "BUF_NAME: ${BUF_NAME}" || fatal "bufname not found."  
     fi
