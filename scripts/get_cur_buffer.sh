@@ -38,6 +38,9 @@ main() {
 set_status() {
   local STATUS="$1"
   tmux set -g @CurrentData "${STATUS}"
+  tmux set -g @Current "#[fg=#{@Dark2},bg=#{@Dark0}]#{@TriangleL}#[fg=#{@Light2},bg=#{@Dark2}] #{@CurrentData} #[fg=#{@Dark2},bg=#{@Dark0}]#{@TriangleRInverse}"
+  tmux set -g status-right "#{E:@Current}#{T:@DateTime}"
+  tmux set -g status-right-length 0
 }
 
 debug() {
