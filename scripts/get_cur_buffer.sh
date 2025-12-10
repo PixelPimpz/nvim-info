@@ -21,15 +21,15 @@ main() {
     (( $YQ_EXIT != 0 )) && fatal "yq failed with code $YQ_EXIT. Check yaml for path & syntax."
 
     local SOCKET="/tmp/$(ls /tmp | grep -E "${PANE_PID}")"
-    local BUF_NAME="$( nvim --server ${SOCKET} --remote-expr 'expand("%:::t")' )"
+    local BUF_NAME="$( nvim --server ${SOCKET} --remote-expr 'expand("%:t")' )"
     
     if (( $DEBUG == 1 )); then 
-      debug "PLUG_ROOT:::${PLUG_ROOT}"
-      debug "SOCKET:::${SOCKET}"
-      debug "PROC:::${PROC}"
-      debug "ICONS:::${ICONS}"
-      debug "ICON:::${ICON}"
-      [[ -n "${BUF_NAME}" ]] && debug "BUF_NAME:::${BUF_NAME}" || fatal "bufname not found."  
+      debug "PLUG_ROOT:${PLUG_ROOT}"
+      debug "SOCKET:${SOCKET}"
+      debug "PROC:${PROC}"
+      debug "ICONS:${ICONS}"
+      debug "ICON:${ICON}"
+      [[ -n "${BUF_NAME}" ]] && debug "BUF_NAME:${BUF_NAME}" || fatal "bufname not found."  
     fi
     set_status "${BUF_NAME}"
   fi
@@ -39,7 +39,7 @@ set_status() {
   local STATUS="$1"
   tmux set -g @CurrentData "${STATUS}"
   tmux set -g @Current "#[fg=#{@Dark2},bg=#{@Dark0}]#{@TriangleL}#[fg=#{@Light2},bg=#{@Dark2}] #{@CurrentData} #[fg=#{@Dark2},bg=#{@Dark0}]#{@TriangleRInverse}"
-  tmux set -g status-right "#{E:::@Current}#{T:@DateTime}"
+  tmux set -g status-right "#{E:@Current}#{T:@DateTime}"
   tmux set -g status-right-length 0
 }
 
