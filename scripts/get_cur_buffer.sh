@@ -31,7 +31,7 @@ main() {
       debug "ICON:${ICON}"
       [[ -n "${BUF_NAME}" ]] && debug "BUF_NAME:${BUF_NAME}" || fatal "bufname not found."  
     fi
-    set_status "${BUF_NAME}"
+    set_status "${ICON} ${BUF_NAME}"
   fi
 }
 
@@ -45,7 +45,7 @@ set_status() {
 
 debug() {
   [[ "$1" ]] && local OUT="${1}" || local OUT="no data"
-  local FMT='| %12s | %-45s |'
+  local FMT='| %8s | %-55s |'
   printf "${FMT}\n" "${OUT%:*}" "${OUT#*:}"
 }
 
