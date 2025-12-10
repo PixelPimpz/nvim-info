@@ -24,7 +24,7 @@ main() {
     local BUF_NAME="$( nvim --server ${SOCKET} --remote-expr 'expand("%:t")' )"
     
     if (( $DEBUG == 1 )); then 
-      debug "PLUG_ROOT:${PLUG_ROOT##*/}"
+      debug "PLUG_ROOT:${PLUG_ROOT#*/home}"
       debug "SOCKET:${SOCKET}"
       debug "PROC:${PROC}"
       debug "ICONS:${ICONS}"
