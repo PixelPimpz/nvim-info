@@ -35,6 +35,10 @@ main() {
   fi
 }
 
+dummy() {
+  echo "to the void" > /dev/null
+}
+
 set_status() {
   local STATUS="$1"
   tmux set -g @CurrentData "${STATUS}"
