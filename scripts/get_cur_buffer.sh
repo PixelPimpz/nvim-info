@@ -45,8 +45,7 @@ set_status() {
 
 debug() {
   [[ "$1" ]] && local OUT="${1}" || local OUT="no data"
-  tmux display -p "${OUT}"
-  printf "| 12-%s | 23-%s |\n", "${OUT%:*}" "${OUT#*:}"
+  printf "| %12-s | %-33s |\n", "${OUT%:*}" "${OUT#*:}"
 }
 
 fatal() {
