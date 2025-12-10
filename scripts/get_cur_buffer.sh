@@ -28,7 +28,7 @@ main() {
       debug "SOCKET:${SOCKET}"
       debug "PROC:${PROC}"
       debug "ICONS:~/${ICONS#*/home*$USER/}"
-      debug "ICON:${ICON} "
+      debug "ICON:${ICON}"
       [[ -n "${BUF_NAME}" ]] && debug "BUF_NAME:${BUF_NAME}" || fatal "bufname not found."  
     fi
     set_status "${ICON} ${BUF_NAME}"
@@ -45,7 +45,7 @@ set_status() {
 
 debug() {
   [[ "$1" ]] && local OUT="${1}" || local OUT="no data"
-  local FMT='| %10s | %-58s |'
+  local FMT='| %10s | %-56s |'
   printf "${FMT}\n" "${OUT%:*}" "${OUT#*:}"
 }
 
