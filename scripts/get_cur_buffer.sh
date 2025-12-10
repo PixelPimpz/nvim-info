@@ -45,8 +45,8 @@ set_status() {
 
 debug() {
   [[ "$1" ]] && local OUT="${1}" || local OUT="no data"
-  local FMT='| %-12s | %45-s |\n'
-  printf "${FMT}" "${OUT%:*}" "${OUT#*:}"
+  local FMT='| %-12s | %45-s |'
+  printf "${FMT}\n" "${OUT%:*}" "${OUT#*:}"
 }
 
 fatal() {
