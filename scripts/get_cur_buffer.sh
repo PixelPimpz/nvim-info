@@ -28,7 +28,7 @@ main() {
       debug "SOCKET:${SOCKET}"
       debug "PROC:${PROC}"
       debug "ICONS:~/${ICONS#*/home*$USER/}"
-      debug "ICON:${ICON}"
+      debug "ICON:${ICON} "
       [[ -n "${BUF_NAME}" ]] && debug "BUF_NAME:${BUF_NAME}" || fatal "bufname not found."  
     fi
     set_status "${ICON} ${BUF_NAME}"
