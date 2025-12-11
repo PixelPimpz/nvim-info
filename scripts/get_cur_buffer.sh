@@ -20,7 +20,8 @@ main() {
 
     local BUF_NAME="$( nvim --server ${SOCKET} --remote-expr 'expand("%:t")' )"
   else
-    local BUF_NAME="$( ps -q ${PANE_PID} -o comm= )"
+    #local BUF_NAME="$( ps -q ${PANE_PID} -o comm= )"
+    local BUF_NAME="wtf?"
   fi
 
   local PROC="$(ps -h --ppid "${PANE_PID}" -o cmd | head  -1 | awk '{print $1}')"  
