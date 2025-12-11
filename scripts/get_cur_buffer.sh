@@ -10,7 +10,6 @@ main() {
   if ! command -v "${YQ_BIN}" &> /dev/null; then
     fatal "yq executable not found at ${YQ_BIN}."
   fi
-exit 0  
   local PANE_PID="$(tmux display -p "#{pane_pid}")"
   local PROC="$(ps -h --ppid "${PANE_PID}" -o cmd | head -n -1 | awk '{print $1}')"  
 
