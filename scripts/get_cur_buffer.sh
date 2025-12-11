@@ -12,6 +12,7 @@ main() {
   fi
   local PANE_PID="$(tmux display -p "#{pane_pid}")"
   local PROC="$(ps -h --ppid "${PANE_PID}" -o cmd | head  -1 | awk '{print $1}')"  
+  local SOCKET="/tmp/$(ls /tmp | grep -E "${PANE_PID}")"
 
   if [[ "${PROC}" == "nvim" ]]; then
 
@@ -19,7 +20,6 @@ main() {
     local YQ_EXIT=$?
     (( $YQ_EXIT != 0 )) && fatal "yq failed with code $YQ_EXIT. Check yaml for path & syntax."
 
-    local SOCKET="/tmp/$(ls /tmp | grep -E "${PANE_PID}")"
     local BUF_NAME="$( nvim --server ${SOCKET} --remote-expr 'expand("%:t")' )"
   else
     #local BUF_NAME="$( ps -o ${PANE_PID} -C comm= )"
