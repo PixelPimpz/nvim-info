@@ -7,14 +7,13 @@ if ! command -v "${YQ_BIN}" &> /dev/null; then
   fatal "yq executable not found at ${YQ_BIN}."
 fi
 DEBUG=$1
-#838232
+
 main() {
   local PANE_PID="$(tmux display -p "#{pane_pid}")"
   local SOCKET="/tmp/$(ls /tmp | grep -E "${PANE_PID}")"
   local PROC="$(ps -h --ppid "${PANE_PID}" -o cmd | head  -1 | awk '{print $1}')"  
 
-  #if [[ "${PROC}" == "nvim" ]]; then
-  if [[ "${SOCKET}" ~= "${PANE_PID}" ]]; then
+  if [[ "${PROC}" == "nvim" ]]; then
 
     local YQ_EXIT=$?
     (( $YQ_EXIT != 0 )) && fatal "yq failed with code $YQ_EXIT. Check yaml for path & syntax."
