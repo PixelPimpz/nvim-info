@@ -19,14 +19,14 @@ main() {
 
   if [[ "${PROC}" == "nvim" ]]; then
 
-    local ICON="$("${YQ_BIN}" '.icons.apps.nvim' "${ICONS}")"
+    ICON="$("${YQ_BIN}" '.icons.apps.nvim' "${ICONS}")"
     local YQ_EXIT=$?
     (( $YQ_EXIT != 0 )) && fatal "yq failed with code $YQ_EXIT. Check yaml for path & syntax."
 
-    local SOCKET="/tmp/$(ls /tmp | grep -E "${PANE_PID}")"
-    local BUF_NAME="$( nvim --server ${SOCKET} --remote-expr 'expand("%:t")' )"
+    SOCKET="/tmp/$(ls /tmp | grep -E "${PANE_PID}")"
+    BUF_NAME="$( nvim --server ${SOCKET} --remote-expr 'expand("%:t")' )"
   else
-    local BUF_NAME="$(ps -q ${PANE_PID}-o comm= )"
+    BUF_NAME="$(ps -q ${PANE_PID}-o comm= )"
   fi
   if (( $DEBUG == 1 )); then 
     debug "PLUG_ROOT:~/${PLUG_ROOT#*/home*$USER/}"
