@@ -12,7 +12,7 @@ main() {
   fi
   
   local PANE_PID="$(tmux display -p "#{pane_pid}")"
-  local PROC="$(ps -h --ppid "${PANE_PID}" -o cmd | head -n 1 | awk '{print $1}')"  
+  local PROC="$(ps -h --ppid "${PANE_PID}" -o cmd | awk '{print $1}')"  
 
   if [[ "${PROC}" == "nvim" ]]; then
 
@@ -34,7 +34,7 @@ main() {
     set_status "${ICON} ${BUF_NAME}"
   fi
 }
-
+## this is just here to  force the repo
 dummy() {
   echo "to the void" > /dev/null
   echo "this is dumb"
