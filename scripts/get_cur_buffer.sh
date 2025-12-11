@@ -14,7 +14,7 @@ main() {
   local PROC="$(ps -h --ppid "${PANE_PID}" -o cmd | head  -1 | awk '{print $1}')"  
 
   #if [[ "${PROC}" == "nvim" ]]; then
-  if [[ "${SOCKET}" ~= $PANE_PID ]]; then
+  if [ "${SOCKET}" ~= ${PANE_PID} ]; then
 
     local YQ_EXIT=$?
     (( $YQ_EXIT != 0 )) && fatal "yq failed with code $YQ_EXIT. Check yaml for path & syntax."
