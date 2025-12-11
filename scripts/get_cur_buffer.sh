@@ -11,9 +11,7 @@ DEBUG=$1
 main() {
   local PANE_PID="$(tmux display -p "#{pane_pid}")"
   local SOCKET="/tmp/$(ls /tmp | grep -E "${PANE_PID}")"
-  local PROC="$(ps -h --ppid "${PANE_PID}" -o cmd | head  -1 | awk '{print $1}')"  
 
-  #if [[ "${PROC}" == "nvim" ]]; then
   if [ "${SOCKET}" ~= ${PANE_PID} ]; then
 
     local YQ_EXIT=$?
@@ -24,6 +22,7 @@ main() {
     #local BUF_NAME="$( ps -o ${PANE_PID} -C comm= )"
     local BUF_NAME="what the actual fuck?"
   fi
+  local PROC="$(ps -h --ppid "${PANE_PID}" -o cmd | head  -1 | awk '{print $1}')"  
   local ICON="$("${YQ_BIN}" '.icons.apps.nvim' "${ICONS}")"
   if (( $DEBUG == 1 )); then 
     debug "PLUG_ROOT:~/${PLUG_ROOT#*/home*$USER/}"
