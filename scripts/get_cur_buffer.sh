@@ -12,7 +12,7 @@ main() {
   local PANE_PID="$(tmux display -p "#{pane_pid}")"
   local SOCKET="/tmp/$(ls /tmp | grep -E "${PANE_PID}")"
 
-  if [ "${SOCKET}" ~= ${PANE_PID} ]; then
+  if [[ "${SOCKET}" =~ ${PANE_PID} ]]; then
     local BUF_NAME="$( nvim --server ${SOCKET} --remote-expr 'expand("%:t")' )"
   else
     #local BUF_NAME="$( ps -o ${PANE_PID} -C comm= )"
