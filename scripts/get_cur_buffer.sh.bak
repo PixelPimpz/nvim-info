@@ -16,7 +16,7 @@ main() {
 
   if [[ "${PROC}" == "nvim" ]]; then
 
-    local ICON="$("${YQ_BIN}" '.icons.nvim' "${ICONS}")"
+    local ICON="$("${YQ_BIN}" '.icons.apps.nvim' "${ICONS}")"
     local YQ_EXIT=$?
     (( $YQ_EXIT != 0 )) && fatal "yq failed with code $YQ_EXIT. Check yaml for path & syntax."
 
@@ -51,7 +51,7 @@ debug() {
 
 fatal() {
   [[ -n "$1" ]] && local E="unknown error" || local E="$1"
-  printf 'ERROR:::%s\n' "$E" >&2
+  printf 'ERROR: %s\n' "$E" >&2
   exit 1
 }
 
