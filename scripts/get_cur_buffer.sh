@@ -12,32 +12,27 @@ main() {
   fi
   
   local PANE_PID="$(tmux display -p "#{pane_pid}")"
-  PROC="$(ps -h --ppid "${PANE_PID}" -o cmd | head -n -1 | awk '{print $1}')"  
-  (( $DEBUG == 1 )) && debug "PROC:${PROC}"
-  SOCKET=
-  ICON=
-  BUF_NAME=
+  local PROC="$(ps -h --ppid "${PANE_PID}" -o cmd | head -n -1 | awk '{print $1}')"  
 
   if [[ "${PROC}" == "nvim" ]]; then
 
-    ICON="$("${YQ_BIN}" '.icons.apps.nvim' "${ICONS}")"
+    local ICON="$("${YQ_BIN}" '.icons.apps.nvim' "${ICONS}")"
     local YQ_EXIT=$?
     (( $YQ_EXIT != 0 )) && fatal "yq failed with code $YQ_EXIT. Check yaml for path & syntax."
 
-    SOCKET="/tmp/$(ls /tmp | grep -E "${PANE_PID}")"
-    BUF_NAME="$( nvim --server ${SOCKET} --remote-expr 'expand("%:t")' )"
-  else
-    BUF_NAME="$(ps -q ${PANE_PID}-o comm= )"
+    local SOCKET="/tmp/$(ls /tmp | grep -E "${PANE_PID}")"
+    local BUF_NAME="$( nvim --server ${SOCKET} --remote-expr 'expand("%:t")' )"
+    
+    if (( $DEBUG == 1 )); then 
+      debug "PLUG_ROOT:~/${PLUG_ROOT#*/home*$USER/}"
+      debug "SOCKET:${SOCKET}"
+      debug "PROC:${PROC}"
+      debug "ICONS:~/${ICONS#*/home*$USER/}"
+      debug "ICON:${ICON}"
+      [[ -n "${BUF_NAME}" ]] && debug "BUF_NAME:${BUF_NAME}" || fatal "bufname not found."  
+    fi
+    set_status "${ICON} ${BUF_NAME}"
   fi
-  if (( $DEBUG == 1 )); then 
-    debug "PLUG_ROOT:~/${PLUG_ROOT#*/home*$USER/}"
-    debug "SOCKET:$SOCKET"
-    debug "PROC:${PROC}"
-    debug "ICONS:~/${ICONS#*/home*$USER/}"
-    debug "ICON:${ICON}"
-    debug "BUF_NAME:${BUF_NAME}"
-  fi
-  set_status "${ICON} ${BUF_NAME}"
 }
 
 set_status() {
