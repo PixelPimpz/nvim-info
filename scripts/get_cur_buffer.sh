@@ -22,16 +22,16 @@ main() {
     local SOCKET="/tmp/$(ls /tmp | grep -E "${PANE_PID}")"
     local BUF_NAME="$( nvim --server ${SOCKET} --remote-expr 'expand("%:t")' )"
     
-    if (( $DEBUG == 1 )); then 
-      debug "PLUG_ROOT:~/${PLUG_ROOT#*/home*$USER/}"
-      debug "SOCKET:${SOCKET}"
-      debug "PROC:${PROC}"
-      debug "ICONS:~/${ICONS#*/home*$USER/}"
-      debug "ICON:${ICON}"
-      [[ -n "${BUF_NAME}" ]] && debug "BUF_NAME:${BUF_NAME}" || fatal "bufname not found."  
-    fi
-    set_status "${ICON} ${BUF_NAME}"
   fi
+  if (( $DEBUG == 1 )); then 
+    debug "PLUG_ROOT:~/${PLUG_ROOT#*/home*$USER/}"
+    debug "SOCKET:${SOCKET}"
+    debug "PROC:${PROC}"
+    debug "ICONS:~/${ICONS#*/home*$USER/}"
+    debug "ICON:${ICON}"
+    [[ -n "${BUF_NAME}" ]] && debug "BUF_NAME:${BUF_NAME}" || fatal "bufname not found."  
+  fi
+  set_status "${ICON} ${BUF_NAME}"
 }
 
 set_status() {
