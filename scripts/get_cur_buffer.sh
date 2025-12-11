@@ -7,23 +7,25 @@ if ! command -v "${YQ_BIN}" &> /dev/null; then
   fatal "yq executable not found at ${YQ_BIN}."
 fi
 DEBUG=$1
-
+#838232
 main() {
   local PANE_PID="$(tmux display -p "#{pane_pid}")"
   local SOCKET="/tmp/$(ls /tmp | grep -E "${PANE_PID}")"
-  local PROC="$(ps -h --ppid "${PANE_PID}" -o cmd | head  -1 | awk '{print $1}')"  
 
-  if [[ "${PROC}" == "nvim" ]]; then
+  #if [[ "${PROC}" == "nvim" ]]; then
+  if [[ "${SOCKET}" ~= "${PANE_PID}" ]]; then
 
     local YQ_EXIT=$?
     (( $YQ_EXIT != 0 )) && fatal "yq failed with code $YQ_EXIT. Check yaml for path & syntax."
 
     local BUF_NAME="$( nvim --server ${SOCKET} --remote-expr 'expand("%:t")' )"
   else
-    #local BUF_NAME="$( ps -o ${PANE_PID} -C comm= )"
-    local BUF_NAME="what the actual fuck?"
+    local BUF_NAME="$( ps -q ${PANE_PID} -o comm= )"
   fi
+
+  local PROC="$(ps -h --ppid "${PANE_PID}" -o cmd | head  -1 | awk '{print $1}')"  
   local ICON="$("${YQ_BIN}" '.icons.apps.nvim' "${ICONS}")"
+  
   if (( $DEBUG == 1 )); then 
     debug "PLUG_ROOT:~/${PLUG_ROOT#*/home*$USER/}"
     debug "PANE_PID:${PANE_PID}"
