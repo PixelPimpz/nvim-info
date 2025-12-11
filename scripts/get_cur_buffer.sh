@@ -26,6 +26,7 @@ main() {
   local ICON="$("${YQ_BIN}" '.icons.apps.nvim' "${ICONS}")"
   if (( $DEBUG == 1 )); then 
     debug "PLUG_ROOT:~/${PLUG_ROOT#*/home*$USER/}"
+    debug "PANE_PID:${PANE_PID}"
     debug "SOCKET:${SOCKET}"
     debug "PROC:${PROC}"
     debug "ICONS:~/${ICONS#*/home*$USER/}"
