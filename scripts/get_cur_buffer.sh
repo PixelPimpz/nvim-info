@@ -14,11 +14,6 @@ DEBUG=$1
 main() {
   local PANE_PID="$(tmux display -p "#{pane_pid}")"
   local SOCKET="/tmp/$(ls /tmp | grep -E "${PANE_PID}")"
-  ts8yd99999ac ssssssssssssssssssssssssssssssssssL:ocal E
-
-
-
-  XIT=
 
   if [[ "${SOCKET}" =~ ${PANE_PID} ]]; then # /tmp/nvim-XXXXX = nvim ... /tmp/ = no nvim socket 
     local PROC="$(ps -h --ppid "${PANE_PID}" -o cmd | head  -1 | awk '{print $1}')"  
