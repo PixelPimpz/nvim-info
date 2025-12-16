@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 CURRENT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 PLUG_ROOT="${CURRENT_DIR%/*}"
-ICONS="$PLUG_ROOT/lib/app-icons.yaml"
+#ICONS="$PLUG_ROOT/lib/app-icons.yaml"
+ICONS="$LIB_ICON"
 YQ_BIN='/usr/bin/yq'
 
 if ! command -v "${YQ_BIN}" &> /dev/null; then
