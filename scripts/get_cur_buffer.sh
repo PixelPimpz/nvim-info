@@ -1,9 +1,7 @@
 #!/usr/bin/env bash
 CURRENT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 PLUG_ROOT="${CURRENT_DIR%/*}"
-ICONS="${LB_ICON}"
-#ICONS="${PLUG_ROOT}/lib/app-icons.yaml"
-#LB_ICON="${TMUX_ROOT}/lib/app-icons.yaml"
+ICONS="$PLUG_ROOT/lib/app-icons.yaml"
 YQ_BIN='/usr/bin/yq'
 
 if ! command -v "${YQ_BIN}" &> /dev/null; then
@@ -38,10 +36,6 @@ main() {
     [[ -n "${BUF_NAME}" ]] && debug "BUF_NAME:${BUF_NAME}" || fatal "bufname not found."  
   fi
   set_status "${ICON} ${BUF_NAME}"
-}
-
-get_icon() {
- ## param handle  
 }
 
 set_status() {
