@@ -1,8 +1,6 @@
 #p!/usr/bin/env bash
-CURRENT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-PLUG_ROOT="${CURRENT_DIR%/*}"
+PLUG_ROOT="$(tmux display -p "#{@PLUG_ROOT}")"
 ICONS=$( tmux display -p "#{@LIB_ICON}" )
-#ICONS="$TMUX_ROOT/lib/app-icons.yaml"
 YQBIN='/usr/bin/yq'
 
 if ! command -v "${YQBIN}" &> /dev/null; then
