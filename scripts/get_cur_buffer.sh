@@ -1,4 +1,4 @@
-#p!/usr/bin/env bash
+#!/usr/bin/env bash
 PLUG_ROOT="$(tmux display -p "#{@PLUG_ROOT}")"
 ICONS=$( tmux display -p "#{@LIB_ICON}" )
 YQBIN='/usr/bin/yq'
