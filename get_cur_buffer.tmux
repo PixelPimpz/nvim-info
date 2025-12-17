@@ -4,5 +4,3 @@ PLUG_ROOT="$(tmux display -p "#{@PLUG_ROOT}")"
 tmux setenv "@LIB_ICON" "$TMUX_ROOT/lib/app-icons.yaml"
 $PLUG_ROOT/lib/localhooks.sh
 $PLUG_ROOT/scripts/get_cur_buffer.sh
-#tmux run-shell "$PLUG_ROOT/scripts/get_cur_buffer.sh"
-#tmux bind M-t run-shell "$PLUG_ROOT/scripts/get_cur_buffer.sh 1"
