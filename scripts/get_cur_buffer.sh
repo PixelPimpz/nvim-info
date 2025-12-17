@@ -57,4 +57,4 @@ fatal() {
   exit 1
 }
 
-#main
+main
