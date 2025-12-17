@@ -1,3 +1,4 @@
 #!/usr/bin/env bash
 THIS="$0"
-echo "$1"
+ICONS="$1"
+cat "$ICONS"
