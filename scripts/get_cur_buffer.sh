@@ -35,6 +35,7 @@ main() {
     [[ -n "${BUF_NAME}" ]] && debug "BUF_NAME:${BUF_NAME}" || fatal "bufname not found."  
   fi
   set_status "${ICON} ${BUF_NAME}"
+  tmux setenv "@FIRSTRUN" 'false' 
 }
 
 set_status() {
