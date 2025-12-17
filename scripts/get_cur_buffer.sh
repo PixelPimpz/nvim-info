@@ -1,12 +1,11 @@
-#!/usr/bin/env bash
+#p!/usr/bin/env bash
 CURRENT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 PLUG_ROOT="${CURRENT_DIR%/*}"
-#ICONS="$PLUG_ROOT/lib/app-icons.yaml"
-ICONS="$LIB_ICON"
-YQ_BIN='/usr/bin/yq'
+ICONS="$TMUX_ROOT/lib/app-icons.yaml"
+YQBIN='/usr/bin/yq'
 
-if ! command -v "${YQ_BIN}" &> /dev/null; then
-  fatal "yq executable not found at ${YQ_BIN}."
+if ! command -v "${YQBIN}" &> /dev/null; then
+  fatal "yq executable not found at ${YQBIN}."
 fi
 DEBUG=$1
 
@@ -16,12 +15,12 @@ main() {
 
   if [[ "${SOCKET}" =~ ${PANE_PID} ]]; then # /tmp/nvim-XXXXX = nvim ... /tmp/ = no nvim socket 
     local PROC="$(ps -h --ppid "${PANE_PID}" -o cmd | head  -1 | awk '{print $1}')"  
-    local ICON="$("$:sed{YQ_BIN}" ".icons.apps.${PROC}" "${ICONS}")"
+    local ICON="$( yq e ".icons.apps.${PROC}" $ICONS )"
     local EXIT=$? && (( ${EXIT} != 0 )) && fatal "yq failed with code ${EXIT}. Check yaml for path & syntax."
     local BUF_NAME="$( nvim --server ${SOCKET} --remote-expr 'expand("%:t")' )"
   else
     local PROC="$( ps -q ${PANE_PID} -o comm= )"
-    local ICON="$("${YQ_BIN}" ".icons.apps.${PROC}" "${ICONS}")"
+    local ICON="$("${YQBIN}" ".icons.apps.${PROC}" "${ICONS}")"
     local EXIT=$? && (( ${EXIT} != 0 )) && fatal "yq failed with code ${EXIT}. Check yaml for path & syntax."
     local BUF_NAME="${PROC}"
     SOCKET="none"
