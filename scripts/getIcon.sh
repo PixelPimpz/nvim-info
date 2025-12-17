@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
-THIS=$0
-tmux display "${THIS##*/} running."
-echo ">>> $LIB_ICON"
+THIS="${0##*/}"
+local icons=$1
+echo "$icons"
