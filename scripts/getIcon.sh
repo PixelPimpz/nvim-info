@@ -4,4 +4,4 @@ YQBIN='/usr/bin/yq'
 ICONS="$1"
 #cat "$ICONS"
 icon="$( yq e '.icons.system.txtdoc' $ICONS )"
-tmux display -p "$(string.format ">>> %s" $icon)" 
+tmux display -p ">>>> $icon" 
