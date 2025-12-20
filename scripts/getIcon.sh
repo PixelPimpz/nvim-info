@@ -1,11 +1,12 @@
 #!/usr/bin/env bash
 local icons="$(tmux display "#{@LIB_ICON}" )"
-local yq-bin="/usr/bin/yq"
-if ! command -v "${yq-bin}" &> /dev/null; then
-  fatal "yq executable not found at ${YQBIN}."
+local yqbin="/usr/bin/yq"
+if ! command -v "${}" &> /dev/null; then
+  fatal "yq executable not found at ${yqbin}."
 fi
 main() {
-  printf 'icons: %s\n' "$icons" 
+  local iconp="$1"
+  printf 'icons: %s\n' "$iconp" 
 
 }
 
@@ -15,4 +16,4 @@ fatal() {
   exit 1
 }
 
-main
+main $icons
