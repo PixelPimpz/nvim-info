@@ -13,13 +13,14 @@ fi
 
 ## Start main 
 main() {
-  [[ -z "$ICON_NAME" ]] && fatal 'ICON_MANE is null'
+  [[ -z "$ICON_NAME" ]] && fatal 'ICON_NAME is null'
   local ICON="$( yq ".icons.[].${ICON_NAME}" < $ICONS | grep -v null )"
   
 	if (( $DEBUG != 0 )); then
   echo "   [VARIABLE] | [VALUE] "
   echo "------------------------"
 	debug "ICON_NAME" "${ICON_NAME}" 
+	debug "ICONS" "${ICONS}" 
   debug "PLUG_ROOT" "${PLUG_ROOT}" 
 	debug "YQBIN" "${YQBIN}" 
 	debug "ICON" "${ICON}" 
