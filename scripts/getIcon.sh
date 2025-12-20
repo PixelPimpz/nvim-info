@@ -32,8 +32,8 @@ main() {
 }
 
 out() {
-  local out="$1"
-  echo "${out}"
+  ##echo "${ICON}"
+  echo ">>$1"
 }
 
 debug() {
