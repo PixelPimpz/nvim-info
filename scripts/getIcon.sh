@@ -19,12 +19,21 @@ main() {
 	if (( $DEBUG != 0 )); then
   echo "   [VARIABLE] | [VALUE] "
   echo "------------------------"
-	debug "ICON_NAME" "${ICON_NAME}" 
-	debug "ICONS" "${ICONS}" 
-  debug "PLUG_ROOT" "${PLUG_ROOT}" 
-	debug "YQBIN" "${YQBIN}" 
-	debug "ICON" "${ICON}" 
+	debug "ICON_NAME:" "${ICON_NAME}" 
+	debug "DEBUG:" "${ICON_NAME}" 
+	debug "ICONS:" "${ICONS}" 
+  debug "PLUG_ROOT:" "${PLUG_ROOT}" 
+	debug "YQBIN:" "${YQBIN}" 
+	debug "ICON:" "${ICON}" 
+  debug "OUT:" "${out}"
 	fi
+  ## send ICON to stdout
+  out "${ICON}"
+}
+
+out() {
+  local out="$1"
+  echo "${out}"
 }
 
 debug() {
