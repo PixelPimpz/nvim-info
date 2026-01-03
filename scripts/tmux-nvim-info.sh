@@ -21,7 +21,7 @@ main() {
     local ICON="$("${YQBIN}" ".icons.apps.${PARENT_PROC}" "${ICONS}")"
     local EXIT=$? && (( ${EXIT} != 0 )) && fatal "yq failed with code ${EXIT}. Check yaml for path & syntax."
     local BUF_NAME="${PARENT_PROC}"
-    local STATUS="$ICON $BUF_NAME"
+    local STATUS="${ICON} ${BUF_NAME}"
     SOCKET="none"
   fi
 
