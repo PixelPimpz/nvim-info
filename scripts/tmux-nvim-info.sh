@@ -43,12 +43,11 @@ set_status() {
   local STATUS="$1"
   tmux set -g @unit-style "fg=#{@Light2},bg=#{@Dark2}"
   tmux set -g @unit-style-end "fg=#{@Dark2},bg=#{@Dark0}"
-  tmux set -g @right "#[T:status-right]"
   tmux set -g @CurrentData "${STATUS}"
-  tmux set -g @unit "#[#{E:@unit-style-end}]#{@TriangleL}#[#{E:@unit-style}] #{@CurrentData} #[#{E:@unit-style-end}]#{@TriangleRInverse}"
+  tmux set -g @Unit "#[#{E:@unit-style-end}]#{@TriangleL}#[#{E:@unit-style}] #{@CurrentData} #[#{E:@unit-style-end}]#{@TriangleRInverse}"
   #tmux set -g @Current "#[#{E:@unit-style-end}]#{@TriangleL}#[#{E:@unit-style}] #{@CurrentData} #[#{E:@unit-style-end}]#{@TriangleRInverse}"
   tmux set -g status-right-length 0
-  tmus set -g status-right "#{@unit}#{status-right}"
+  tmus set -g status-right "#{E:@Unit}#{status-right}"
 }
 
 debug() {
