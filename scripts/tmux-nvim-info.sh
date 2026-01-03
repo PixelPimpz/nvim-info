@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 ICONS=$( tmux display -p "#{@LIB_ICON}" )
 YQBIN='/usr/bin/yq'
-
+PLUG_ROOT=$( tmux display -p "#{@PLUG_ROOT}" )
 if ! command -v "${YQBIN}" &> /dev/null; then
   fatal "yq executable not found at ${YQBIN}."
 fi
