@@ -48,7 +48,7 @@ set_status() {
   #tmux set -g @Current "#[#{E:@unit-style-end}]#{@TriangleL}#[#{E:@unit-style}] #{@CurrentData} #[#{E:@unit-style-end}]#{@TriangleRInverse}"
   tmux set -g @Current "#[fg=#{@Dark2},bg=#{@Dark0}]#{@TriangleL}#[fg=#{@Light2},bg=#{@Dark2}] #{@CurrentData} #[fg=#{@Dark2},bg=#{@Dark0}]#{@TriangleRInverse}"
   tmux set -g status-right-length 0
-  tmux set -g status-right "#{@Current}#{@right}"
+  tmux set -g status-right "#{E:{@Current}}#{@right}"
 }
 
 debug() {
