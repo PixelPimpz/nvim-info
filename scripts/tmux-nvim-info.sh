@@ -5,7 +5,7 @@ YQBIN='/usr/bin/yq'
 if ! command -v "${YQBIN}" &> /dev/null; then
   fatal "yq executable not found at ${YQBIN}."
 fi
-DEBUG=$1
+DEBUG=$(tmux display -p "#{@DEBUG}")
 
 main() {
   local PANE_PID="$(tmux display -p "#{pane_pid}")"
