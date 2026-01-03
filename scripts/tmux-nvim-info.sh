@@ -33,7 +33,6 @@ main() {
     debug "PARENT_PROC:${PARENT_PROC}"
     debug "ICONS:~/${ICONS#*/home*$USER/}"
     debug "ICON:${ICON}"
-    debug "STATUS:$STATUS"
     [[ -n "${BUF_NAME}" ]] && debug "BUF_NAME:${BUF_NAME}" || fatal "bufname not found."  
   fi
   set_status "${ICON} ${BUF_NAME}"
