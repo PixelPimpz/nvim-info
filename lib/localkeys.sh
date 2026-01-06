@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
-echo "localkeys..."
+echo "date +%l:%M:%S localkeys..." >> ~/temp-tmux.log
 tmux display  "localkeys.sh running..."
