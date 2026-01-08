@@ -5,7 +5,7 @@ PLUG_ROOT=$( tmux display -p "#{@PLUG_ROOT}" )
 if ! command -v "${YQBIN}" &> /dev/null; then
   fatal "yq executable not found at ${YQBIN}."
 fi
-DEBUG=$(tmux display -p "#{@DEBUG}")
+DEBUG=$(tmux show -gqv @DEBUG})
 
 main() {
   local PANE_PID="$(tmux display -p "#{pane_pid}")"
