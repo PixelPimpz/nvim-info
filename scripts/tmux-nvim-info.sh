@@ -32,9 +32,8 @@ main() {
   debug "ICONS:~/${ICONS#*/home*$USER/}"
   debug "ICON:${ICON}"
   debug "STATUS:${STATUS}"
-  debug "STATUS-RIGHT:#{E:status-right}"
 
-  tmux display -p "#{E:status-right}"  
+  tmux display -p "#{E:#{E:status-right}}"  
   ## set status bar 
   set_status "${ICON} ${BUF_NAME}"
 }
