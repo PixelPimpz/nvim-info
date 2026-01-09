@@ -32,7 +32,7 @@ main() {
   debug "ICONS:~/${ICONS#*/home*$USER/}"
   debug "ICON:${ICON}"
   debug "STATUS:${STATUS}"
-  [[ -n "${BUF_NAME}" ]] && debug "BUF_NAME:${BUF_NAME}" || fatal "bufname not found."  
+  debug "STATUS-RIGHT:#{status-right}"
 
   ## set status bar 
   set_status "${ICON} ${BUF_NAME}"
@@ -46,7 +46,6 @@ set_status() {
   #tmux set -g @Current "#[#{E:@unit-style-end}]#{@TriangleL}#[#{E:@unit-style}] #{@CurrentData} #[#{E:@unit-style-end}]#{@TriangleRInverse}"
   tmux set -g status-right-length 0
   tmux set -g @cur-right "#{T:status-right}"
-  tmux display -p "#{@cur-right}"
   tmux set -g status-right "#[#{E:@unit-style-end}]#{@TriangleL}#[#{E:@unit-style}] #{@CurrentData} #[#{E:@unit-style-end}]#{@TriangleRInverse}#{T:@DateTime}"
   tmux source "~/.tmux.conf"
 }
