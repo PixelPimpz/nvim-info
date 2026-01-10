@@ -25,7 +25,7 @@ main() {
   fi
 
   debug "PLUG_ROOT:$PLUG_ROOT"
-  debug "PANE_PID:${E:PANE_PID}"
+  debug "PANE_PID:${PANE_PID}"
   debug "SOCKET:${SOCKET}"
   debug "CHILD_PROC:${PARENT_PROC}"
   debug "PARENT_PROC:${PARENT_PROC}"
