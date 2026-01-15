@@ -7,4 +7,4 @@ tmux set -g '@PLUG_ROOT' "$CURRENT_DIR"
 tmux run-shell "$CURRENT_DIR/scripts/localkeys.sh" 
 tmux run-shell "$CURRENT_DIR/scripts/localhooks.sh" 
 tmux run-shell "$CURRENT_DIR/scripts/tmux-nvim-info.sh" 
-tmux set -g '' 
+tmux set -u '@PLUG_ROOT' 
