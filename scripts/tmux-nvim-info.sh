@@ -43,14 +43,8 @@ main()
 
   ## set status bar 
   tmux set -g @nvim-info "${ICON} ${BUF_NAME}"
-  set-opt
+  tmux set -g @nvim-info-unit "#{@TriangleL}#[inverse] #{@nvim-info} #[noinverse]#{@TriangleRInverse}"
 }
 
-set_opt() 
-{
-  tmux set -g @nvim-info-unit-style "fg=#{@Light2},bg=#{@Dark2}"
-  tmux set -g @nvim-info-unit-style-end "fg=#{@Dark2},bg=#{@Dark0}"
-  tmux set -g @nvim-info-unit "#{@TriangleL} #{@nvim-info} #{@TriangleRInverse}"
-}
 
 main
