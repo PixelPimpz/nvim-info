@@ -42,7 +42,7 @@ main()
   dump "STATUS:${STATUS}"
 
   ## set status bar 
-  tmux set -g @nvim-info-unit "#[fg=#{@Dark4}]#{@TriangleL}#[bg=#{@Light0_S}]#[reverse]${STATUS}#[bg=default]#[noreverse]#{@TriangleRInverse}"
+  tmux set -g @nvim-info-unit "#[E:fg=#{@Dark4}]#{@TriangleL}#[bg=#{@Light0_S}]#[reverse]${STATUS}#[bg=default]#[noreverse]#{@TriangleRInverse}"
 }
 
 
