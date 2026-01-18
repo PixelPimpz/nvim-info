@@ -25,6 +25,7 @@ main()
     local EXIT=$? && (( ${EXIT} != 0 )) && fatal "yq failed with code ${EXIT}. Check yaml for path & syntax."
     local BUF_NAME="$( nvim --server ${SOCKET} --remote-expr 'expand("%:t")' )"
     local STATUS="${ICON} ${BUF_NAME}"
+    tmux set -g @nvim-info "$STATUS"
   else
     local ICON="$("${YQ}" ".icons.apps.${PARENT_PROC}" "${ICONS}")"
     local EXIT=$? && (( ${EXIT} != 0 )) && fatal "yq failed with code ${EXIT}. Check yaml for path & syntax."
@@ -42,7 +43,7 @@ main()
   dump "STATUS:${STATUS}"
 
   ## set status bar 
-  tmux set -g @nvim-info-unit "#[fg=#{@Dark4}]#{@TriangleL}#[bg=#{@Light0_S}]#[reverse]${STATUS}#[bg=default]#[noreverse]#{@TriangleRInverse}"
+  tmux set -g @nvim-info-unit "#[fg=#{@Dark4}]#{@TriangleL}#[bg=#{@Light0_S}]#[reverse]#{@nvim-info} #[bg=default]#[noreverse]#{@TriangleRInverse}"
 }
 
 
