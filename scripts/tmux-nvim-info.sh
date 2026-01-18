@@ -50,7 +50,7 @@ set_opt()
 {
   tmux set -g @nvim-info-unit-style "fg=#{@Light2},bg=#{@Dark2}"
   tmux set -g @nvim-info-unit-style-end "fg=#{@Dark2},bg=#{@Dark0}"
-  tmux set -g @nvim-info-unit "#[#{@unit-style-end}]#{@TriangleL}#[#{@unit-style}] #{@nvim-info} #[#{@unit-style-end}]#{@TriangleRInverse}"
+  tmux set -g @nvim-info-unit "#{@TriangleL} #{@nvim-info} #{@TriangleRInverse}"
 }
 
 main
