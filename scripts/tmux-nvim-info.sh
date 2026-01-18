@@ -24,14 +24,13 @@ main()
     local ICON="$( yq e ".icons.apps.${CHILD_PROC}" $ICONS )"
     local EXIT=$? && (( ${EXIT} != 0 )) && fatal "yq failed with code ${EXIT}. Check yaml for path & syntax."
     local BUF_NAME="$( nvim --server ${SOCKET} --remote-expr 'expand("%:t")' )"
-    local STATUS="${ICON} ${BUF_NAME}"
-    tmux set -g @nvim-info "$STATUS"
   else
     local ICON="$("${YQ}" ".icons.apps.${PARENT_PROC}" "${ICONS}")"
     local EXIT=$? && (( ${EXIT} != 0 )) && fatal "yq failed with code ${EXIT}. Check yaml for path & syntax."
     local BUF_NAME="${PARENT_PROC}"
     SOCKET="none"
   fi
+  local STATUS="${ICON} ${BUF_NAME}"
 
   dump "LOCAL_ROOT:$LOCAL_ROOT"
   dump "PANE_PID:${PANE_PID}"
@@ -39,10 +38,10 @@ main()
   dump "CHILD_PROC:${PARENT_PROC}"
   dump "PARENT_PROC:${PARENT_PROC}"
   dump "ICONS:~/${ICONS#*/home*$USER/}"
-  dump "ICON:${ICON}"
   dump "STATUS:${STATUS}"
 
   ## set status bar 
+  tmux set -g @nvim-info "${STATUS}"
   tmux set -g @nvim-info-unit "#[fg=#{@Dark4}]#{@TriangleL}#[bg=#{@Light0_S}]#[reverse]#{@nvim-info} #[bg=default]#[noreverse]#{@TriangleRInverse}"
 }
 
