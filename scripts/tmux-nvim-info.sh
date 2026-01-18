@@ -42,15 +42,15 @@ main()
   dump "STATUS:${STATUS}"
 
   ## set status bar 
-  set_opt "${ICON} ${BUF_NAME}"
+  tmux set -g @nvim-info "${ICON} ${BUF_NAME}"
+  set-opt
 }
 
 set_opt() 
 {
-  local STATUS="$1"
   tmux set -g @nvim-info-unit-style "fg=#{@Light2},bg=#{@Dark2}"
   tmux set -g @nvim-info-unit-style-end "fg=#{@Dark2},bg=#{@Dark0}"
-  tmux set -g @nvim-info-unit "#[#{E:@unit-style-end}]#{@TriangleL}#[#{E:@unit-style}] ${STATUS} #[#{E:@unit-style-end}]#{@TriangleRInverse}"
+  tmux set -g @nvim-info-unit "#[#{E:@unit-style-end}]#{@TriangleL}#[#{E:@unit-style}] #{@nvim-info} #[#{E:@unit-style-end}]#{@TriangleRInverse}"
 }
 
 main
