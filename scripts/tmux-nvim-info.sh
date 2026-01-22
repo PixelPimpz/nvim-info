@@ -42,6 +42,6 @@ main()
 
   ## set status bar 
   tmux set -g @nvim-info "${STATUS}"
-  tmux set -g @nvim-info-unit "#[fg=#{@bg1}]#{E:@TriangleL}#[bg=#{@fg2}]#[reverse]#{@nvim-info} #[bg=default]#[noreverse]#{E:@TriangleRInverse}"
+  tmux set -g @nvim-info-unit "#[fg=#{@bg1}]#{E:@TriangleL}#[bg=#{@fg2}]#[reverse] #{@nvim-info}#[bg=default]#[noreverse]#{E:@TriangleRInverse}"
 }
 main
