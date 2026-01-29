@@ -28,9 +28,11 @@ main()
     local ICON="$("${YQ}" ".icons.apps.${PARENT_PROC}" "${ICONS}")"
     local EXIT=$? && (( ${EXIT} != 0 )) && fatal "yq failed with code ${EXIT}. Check yaml for path & syntax."
     local BUF_NAME="${PARENT_PROC}"
-    SOCKET="none"
+    local SOCKET="none"
   fi
   local STATUS="${ICON} ${BUF_NAME}"
+  local PWD=$(tmux display -p "#{pane_current_path}")
+
   dump "LOCAL_ROOT:$LOCAL_ROOT"
   dump "PANE_PID:${PANE_PID}"
   dump "SOCKET:${SOCKET}"
@@ -41,6 +43,6 @@ main()
 
   ## set status bar 
   tmux set -g @nvim-info "${STATUS}"
-  tmux set -g @current_path "#{E:pane_current_path}" 
+  tmux set -g @current_path "$PWD" 
 }
 main
