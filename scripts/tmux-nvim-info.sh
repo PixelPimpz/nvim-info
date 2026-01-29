@@ -33,6 +33,7 @@ main()
   fi
   local STATUS="${ICON} ${BUF_NAME}"
   local PWD=$(tmux display -p "#{pane_current_path}")
+  local folder=$( yaml2item ".icons.sys.Folder" "$ICONS")
   PWD=$( echo -e "\U007E/${PWD##$HOME/}/")
   dump "LOCAL_ROOT:$LOCAL_ROOT"
   dump "PANE_PID:${PANE_PID}"
@@ -44,6 +45,6 @@ main()
 
   ## set status bar 
   tmux set -g @nvim-info "${STATUS}"
-  tmux set -g @current_path "$PWD" 
+  tmux set -g @current_path "${folder} $PWD" 
 }
 main
