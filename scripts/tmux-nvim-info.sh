@@ -32,7 +32,7 @@ main()
   fi
   local STATUS="${ICON} ${BUF_NAME}"
   local PWD=$(tmux display -p "#{pane_current_path}")
-  PWD=${PWD/home\/*\//\~}
+  PWD=${PWD/home\/*/\~}
   dump "LOCAL_ROOT:$LOCAL_ROOT"
   dump "PANE_PID:${PANE_PID}"
   dump "SOCKET:${SOCKET}"
