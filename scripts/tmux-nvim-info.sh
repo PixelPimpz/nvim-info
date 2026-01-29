@@ -31,7 +31,6 @@ main()
     SOCKET="none"
   fi
   local STATUS="${ICON} ${BUF_NAME}"
-
   dump "LOCAL_ROOT:$LOCAL_ROOT"
   dump "PANE_PID:${PANE_PID}"
   dump "SOCKET:${SOCKET}"
@@ -42,6 +41,6 @@ main()
 
   ## set status bar 
   tmux set -g @nvim-info "${STATUS}"
-  tmux set -g @nvim-info-unit "#{@nvim-info} "
+  tmux set -g @current_path "#{E:pane_current_path}" 
 }
 main
