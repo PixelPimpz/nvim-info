@@ -41,6 +41,6 @@ main()
 
   ## set status bar 
   tmux set -g @nvim-info "${STATUS}"
-  tmux set -g @current_path "#{pane_current_path}" 
+  tmux set -g @current_path "#{E:pane_current_path}" 
 }
 main
