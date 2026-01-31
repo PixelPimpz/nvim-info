@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 ICONS=$( tmux display -p "#{@LIB_ICON}" )
-LOCAL_ROOT=$( tmux display -p "#{@LOCAL_ROOT}" )
+LOCAL_ROOT="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+LOCAL_ROOT="${LOCAL_ROOT%*/}"
 SHARE="$( tmux show -gqv @CHER )"
 
 ## source helper functions from @CHER
